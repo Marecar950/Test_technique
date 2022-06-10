@@ -75,14 +75,14 @@ app.get('/api/utilisateur', (req, res) => {                              // Obte
     res.status(200).send(donnee_json)
 })     
 
-app.get('/api/etablissement', (req, res) => {                           // Obtention de la somme d'un secteur d'activité donné.
+app.get('/api/secteur', (req, res) => {                           // Obtention de la somme d'un secteur d'activité donné.
   res.json(donnee_json.reduce((etablissement_secteur, current) => {
     
-  if (etablissement_secteur[current.etablissement] === current.location ) {
-    etablissement_secteur[current.etablissement] ++ 
+  if (etablissement_secteur[current.etablissement_type]) {
+    etablissement_secteur[current.etablissement_type] ++ 
  }
   else {
-    etablissement_secteur[current.etablissement] = 1
+    etablissement_secteur[current.etablissement_type] = 1
  }
    return etablissement_secteur
  }, {}))
@@ -127,12 +127,12 @@ app.get('/api/etablissement_Ville', (req, res) => {       // Obtention de tous l
   res.json(donnee_json.map(function(ville_donnee) {
     return {
       location: ville_donnee.location,
-      etablissement_type: donnee_json.filter(function(b) {
+      etablissement: donnee_json.filter(function(b) {
       
     return b.location === ville_donnee.location
  }).map(function(Obtenir) {
   
-    return Obtenir.etablissement_type
+    return Obtenir.etablissement
  })
   };
  }).filter((obj, pos, arr) => {
