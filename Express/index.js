@@ -186,7 +186,7 @@ app.delete('/api/etablissement_ville/:Ville', (req, res) => {     // Suppression
 app.delete('/api/etablissement_secteur/:Secteur', (req, res) => {    // Suppression de tous les établissements d'un secteur d'activité
 
   const secteur = req.params.Secteur
-  const Index = utilisateur.filter(SECTEUR => SECTEUR.etablissement_type === secteur)
+  const Index = donnee_json.filter(SECTEUR => SECTEUR.etablissement_type === secteur)
   
     donnee_json.filter(function(filtrer) {
   
